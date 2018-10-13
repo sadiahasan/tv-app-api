@@ -1,26 +1,62 @@
 <!DOCTYPE html>
 <head>
 
+{{>head}}
+{{>style}}
+
 </head>
 
 <body>
 <div class = container>
 
-
-<div class="row" style="margin-top: 20%">
-	<h1 class="text-center" style="font-family: 'Raleway', sans-serif;"> what are you watching? </h1> 
+<div class="row">
+<div class="col-lg-10 col-md-offset-1" style="margin-top: 10%">
+	<h1 class="text-center" style="font-family: 'Raleway', sans-serif; color: black; text-shadow: -1px 0 black, 0 1px black, 2px 0 black, 0 -1px black;"> Keep Track Of Your TV Obsession </h1> 
+</div>
 </div>
 
+<br>
 <div class="row">
-<div class = "col-lg-3 col-lg-offset-4">
+<div class = "col-lg-6 col-md-offset-3">
 
-<form action="/tv" method="POST" style="width: 550px">
+	<div class = "col-lg-7 col-md-offset-3" style="background-color: white; height: 250px; border-radius: 10px; opacity: .93335"> 
+		<br>
+  <form id="Login" action="/h" method="POST" style="margin-top: 5%; margin-bottom: 5%">
+
+        <div class="form-group">
+
+
+            <input type="text" class="form-control" name="email" id="inputEmail" placeholder="Email Address">
+
+        </div>
+
+        <div class="form-group">
+
+            <input type="text" class="form-control" name="password" id="inputPassword" placeholder="Password">
+
+        </div>
+        <div class="forgot">
+        <a href="reset.html">Forgot password?</a>
+		</div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="register" class="btn btn-primary">Register</button>
+
+    </form>
+
+	 </div>
+
+
+</div>
+</div>
+
+<!-- <form action="/tv" method="POST" style="width: 550px">
 	<input type="text" class="form-control" name="title" placeholder="title" style="width:50%">
 	</div>
 	<div class = "col-lg-4">
 	<button class="btn btn-dark btn-sm" style="margin-top: 5px"> go</button>
 	</div>
-</form>
+</form> -->
 
 
 <div class = "col-lg-8 col-lg-offset-4">

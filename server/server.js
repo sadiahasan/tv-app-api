@@ -2,27 +2,31 @@ const express = require('express');
 const hbs = require('hbs');
 const axios = require('axios');
 const bodyParser = require('body-parser');
+const path = require("path")
+const pg = require('pg');
 
 
-const {ObjectId} = require('mongodb');
-var{mongoose} = require('./db/mongoose');
-var {User} = require('./models/user');
 
+var db = require('../queries');
 var app = express();
 
-hbs.registerPartials(__dirname + '/views/partials');
+hbs.registerPartials(__dirname + '/../views/partials' );
 
 const port = process.env.PORT || 8000;
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'hbs');
 
-
-
-
-app.get('/', (req, res) => {
+app.get('/h', (req, res) => {
 	res.render('home.hbs');
+
 });
+
+app.post('/h', db.userLogIn);
+
+
+
+app.get('/', db.getAllPuppies);
 
 app.post('/tv', (req, res) => {
 	var title = JSON.stringify(req.body.title);
@@ -33,10 +37,21 @@ app.post('/tv', (req, res) => {
 
 	axios.get(tvURL).then((response) => {
 		console.log(response.data.Genre);
+		res.render('tv.hbs', {
+		genre: response.data.Genre
 	})
+}).catch((e) => {
+		if(e.code === 'ENOTFOUND') {
 
-	res.render('tv.hbs');
+		}else{
+			console.log(e.message);
+			res.render('weather.hbs', {
+				location: location,
+				weatherMessage: e.message
+			})
+		}
 
+});
 });
 
 app.listen(port, () => {
